@@ -7,8 +7,8 @@ public class Collectable : MonoBehaviour
 
     public int collectableValue;
     //  we need a reference to the PlayerScore.cs script. that script is attached to the player
-    public GameObject playerObject;
-    private PlayerScore gameScore;
+    //public GameObject playerObject;
+    //private PlayerScore gameScore;
 
     // Start is called before the first frame update
     void Start()
@@ -23,22 +23,34 @@ public class Collectable : MonoBehaviour
         //playerObject = GameObject.Find("Player");
 
         //  cannot just use .GetComponent becuase PlayerScore is not attached to the collectable
-        gameScore = playerObject.GetComponent<PlayerScore>();
+        //gameScore = playerObject.GetComponent<PlayerScore>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            gameScore.setPlayerScore(collectableValue);
-            Destroy(this.gameObject);
+            
+
         }
+    }
+
+    public void destroyCollectable()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public int getCollectableValue()
+    {
+        return collectableValue;
+    }
+
+    public void setCollectableValue(int value)
+    {
+        collectableValue = value;
+
     }
 
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,7 +109,20 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
+        else if (collision.gameObject.CompareTag("CoinCollectable"))
+        {
+
+            //  get value of collectable
+            int collectableValue = collision.GetComponent<Collectable>().getCollectableValue();
+            //  destroy collectable
+            collision.GetComponent<Collectable>().destroyCollectable();
+            //  add to player score
+            GetComponent<PlayerScore>().setPlayerScore(collectableValue);
+
+        }
+
     }
+    
 
 
 
