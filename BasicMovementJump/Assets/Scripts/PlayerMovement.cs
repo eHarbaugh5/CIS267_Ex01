@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     private int numJumps;
     private int maxNumJumps;
 
+    public GameObject gameManager;
+    private GameManager gm;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
         //becuase the rigidbody2d is attached to the player and this script
         //is also attached to the player.
         playerRigidBody = GetComponent<Rigidbody2D>();
+
+        gm = gameManager.GetComponent<GameManager>();
 
         numJumps = 1;
         maxNumJumps = 1;
@@ -90,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.CompareTag("OB"))
         {
             //  need to import SceneManagement
-            SceneManager.LoadScene("SampleScene");
+            //SceneManager.LoadScene("SampleScene");
+            gm.setGameOver(true);
         }
         else if (collision.gameObject.CompareTag("Ground"))
         {
